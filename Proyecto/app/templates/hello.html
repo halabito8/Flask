@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% import 'macros.html' as macros %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block title %}
+    {{ super() }}
+    Bienvenido
+{% endblock %}
+
+{% block content %}
+    {% if username %}
+        <h1>Bienvenido, {{ username | capitalize }}</h1>
+    {% endif %}
+    {% if user_ip %}
+        <h3> Hello world, tu IP es {{ user_ip }}</h3>
+    {% else %}
+        <a href="{{ url_for('index') }}">Ir a inicio</a>
+    {% endif %}
+    <ul>
+        {% for value in todo %}
+            {% for key, value2 in value.items() %}
+                {{ macros.render_todo(value2) }}
+            {% endfor %}
+        {% endfor %}
+    </ul>
+{% endblock %}

@@ -1,0 +1,30 @@
+creacion de tablas
+
+CREATE TABLE usuarios(
+user_id int unsigned not null auto_increment,
+user varchar(30) not null,
+passwrd varchar(30) not null,
+primary key (user_id)
+);
+
+CREATE TABLE to_dos(
+todo_id int unsigned not null auto_increment,
+todo varchar(100),
+user_id int unsigned not null,
+foreign key (user_id) REFERENCES usuarios(user_id)
+ON UPDATE CASCADE
+ON DELETE CASCADE,
+PRIMARY KEY (todo_id)
+);
+
+inserts
+
+insert into usuarios(user,passwrd) values ('david','123');
+insert into usuarios(user,passwrd) values ('maria','asdf');
+
+insert into to_dos(todo,user_id) values ('comprar galleta','1');
+insert into to_dos(todo,user_id) values ('cargar gasolina','1');
+insert into to_dos(todo,user_id) values ('limpiar casa','1');
+
+insert into to_dos(todo,user_id) values ('aprender flask','2');
+insert into to_dos(todo,user_id) values ('hacer video','2');
