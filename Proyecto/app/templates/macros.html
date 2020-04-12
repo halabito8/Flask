@@ -1,3 +1,5 @@
-{% macro render_todo(value) %}
-    <li>Descripcion: {{value}}</li>
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% macro render_todo(value, del_todo) %}
+    <li>Descripcion: {{value, id}}  {{ wtf.quick_form(del_todo) }}</li>
 {% endmacro %}

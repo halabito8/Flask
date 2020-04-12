@@ -16,11 +16,21 @@
     {% else %}
         <a href="{{ url_for('index') }}">Ir a inicio</a>
     {% endif %}
+
+    <div class="container">
+        <h2>Crea Una nueva tarea</h2>
+        {{ wtf.quick_form(todo_form) }}
+    </div>
+
     <ul>
-        {% for value in todo %}
-            {% for key, value2 in value.items() %}
-                {{ macros.render_todo(value2) }}
+        {% if flag==True %}
+            {% for value in todo %}
+                {% for value, id in value %}
+                    {{ macros.render_todo(value, id, del_todo) }}
+                {% endfor %}
             {% endfor %}
-        {% endfor %}
+        {% else %}
+            No tienes nada que hacer
+        {% endif %}
     </ul>
 {% endblock %}
