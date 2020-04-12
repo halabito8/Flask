@@ -37,7 +37,7 @@ def new_todo(user_id, description):
     cnx.commit()
 
 def get_todos(user_id):
-    query = cursor.execute('SELECT todo, todo_id FROM to_dos WHERE user_id='+ str(user_id)+' AND done=0;')
+    query = cursor.execute('SELECT todo FROM to_dos WHERE user_id='+ str(user_id)+' AND done=0;')
     results = cursor.fetchall()
     if query > 0:
         flag = True
@@ -45,6 +45,6 @@ def get_todos(user_id):
         flag = False
     return results, flag
 
-def del_todo(todo_id):
-    query = cursor.execute('UPDATE to_dos SET done = 1 WHERE todo_id='+str(todo_id)+');')
+def del_todo(description, user_id):
+    query = cursor.execute('UPDATE to_dos SET done = 1 WHERE todo=\''+description+'\' And user_id='+str(user_id)+';')
     cnx.commit()

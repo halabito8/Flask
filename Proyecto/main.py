@@ -87,3 +87,10 @@ def hello():
         return redirect(url_for('hello'))
 
     return render_template('hello.html', **context)
+
+@app.route('/delete/<description>', methods = ['POST'])
+def delete(description):
+    user_id = current_user.id
+    del_todo(description, user_id)
+    flash('Tarea eliminada exitosamente')
+    return redirect(url_for('index'))

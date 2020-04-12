@@ -25,12 +25,12 @@
     <ul>
         {% if flag==True %}
             {% for value in todo %}
-                {% for value, id in value %}
-                    {{ macros.render_todo(value, id, del_todo) }}
+                {% for key, value2 in value.items() %}
+                    {{ macros.render_todo(value2, del_todo) }}
                 {% endfor %}
             {% endfor %}
         {% else %}
-            No tienes nada que hacer
+            No tienes nada que hacer mas que relajarte
         {% endif %}
     </ul>
 {% endblock %}
