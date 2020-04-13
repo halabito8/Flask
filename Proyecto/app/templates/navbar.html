@@ -24,6 +24,8 @@
                 {% if current_user.is_authenticated %}
                     <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
                 {% endif %}
+                <li><a href="{{ url_for('hello') }}">No hechas</a></li>
+                <li><a href="{{ url_for('done') }}">Hechas</a></li>
             </ul>
         </div>
     </div>

@@ -59,7 +59,7 @@ def signup():
         if flag is False:
             password_hash = generate_password_hash(password)
 
-            new_user(username, password_hash)
+            new_user(username, password)
 
             results, flag = get_user_by_name(username)
 

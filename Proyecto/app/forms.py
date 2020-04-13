@@ -13,3 +13,6 @@ class TodoForm(FlaskForm):
 
 class DelTodoForm(FlaskForm):
     submit = SubmitField('Borrar')
+
+class DoneTodoForm(FlaskForm):
+    submit = SubmitField('Completa')

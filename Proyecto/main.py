@@ -3,7 +3,7 @@ from flask import request, redirect, make_response, render_template, session, ur
 from flask_login import login_required, current_user
 
 from app import create_app
-from app.forms import TodoForm, DelTodoForm
+from app.forms import TodoForm, DelTodoForm, DoneTodoForm
 from app.conexionDB import *
 
 app = create_app()
@@ -56,6 +56,7 @@ def hello():
     user_id = current_user.id
     todo_form = TodoForm()
     del_todo = DelTodoForm()
+    done_todo = DoneTodoForm()
     # login_form = LoginForm()
     # username = session.get('username')
 
@@ -69,6 +70,7 @@ def hello():
         'flag':flag,
         'todo_form': todo_form,
         'del_todo': del_todo,
+        'done_todo': done_todo,
     }
 
     # if login_form.validate_on_submit():
@@ -93,4 +95,21 @@ def delete(description):
     user_id = current_user.id
     del_todo(description, user_id)
     flash('Tarea eliminada exitosamente')
+    return redirect(url_for('index'))
+
+@app.route('/done')
+def done():
+    user_id = current_user.id
+    results, flag = get_done_todo(user_id)
+    context = {
+        'results':results,
+        'flag': flag,
+    }
+    return render_template('done.html', **context)
+
+@app.route('/makedone/<description>', methods=['POST'])
+def makedone(description):
+    user_id = current_user.id
+    done_todo(description, user_id)
+
     return redirect(url_for('index'))

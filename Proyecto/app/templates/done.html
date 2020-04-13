@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% import 'macros.html' as macros %}
+
+{% block title %}
+    {{ super() }}
+    Bienvenido
+{% endblock %}
+
+{% block content %}
+    {% if username %}
+        <h1>Bienvenido, {{ username | capitalize }}</h1>
+    {% endif %}
+    
+    <ul>
+        {% if flag==True %}
+            {% for value in results %}
+                {% for key, value2 in value.items() %}
+                    {{ macros.render_done(value2) }}
+                {% endfor %}
+            {% endfor %}
+            <h3>Felicidades por tu trabajo hecho</h3>
+        {% else %}
+            No has hecho nada no te puedes relajar ahora
+        {% endif %}
+    </ul>
+{% endblock %}

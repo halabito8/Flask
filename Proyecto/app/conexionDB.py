@@ -33,7 +33,7 @@ def new_user(username, password):
     cnx.commit()
 
 def new_todo(user_id, description):
-    query = cursor.execute('INSERT INTO to_dos(todo,user_id) VALUES(\''+description+'\',\''+ str(user_id)+'\');')
+    query = cursor.execute('INSERT INTO to_dos(todo,user_id,done) VALUES(\''+description+'\',\''+ str(user_id)+'\',0);')
     cnx.commit()
 
 def get_todos(user_id):
@@ -48,3 +48,16 @@ def get_todos(user_id):
 def del_todo(description, user_id):
     query = cursor.execute('UPDATE to_dos SET done = 1 WHERE todo=\''+description+'\' And user_id='+str(user_id)+';')
     cnx.commit()
+
+def done_todo(description, user_id):
+    query = cursor.execute('UPDATE to_dos SET done = 2 WHERE todo=\''+description+'\' And user_id='+str(user_id)+';')
+    cnx.commit()
+
+def get_done_todo(user_id):
+    query = cursor.execute('SELECT todo FROM to_dos WHERE user_id='+ str(user_id)+' AND done=2;')
+    results = cursor.fetchall()
+    if query > 0:
+        flag = True
+    else:
+        flag = False
+    return results, flag
