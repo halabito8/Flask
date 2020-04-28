@@ -33,7 +33,7 @@ def login():
 
                 redirect(url_for('hello'))
             else:
-                flash('La informacion no coincide')
+                flash('La contraseña incorrecta')
                 flash(results[0]['passwrd'])
         else:
             flash('El usuario no existe')
