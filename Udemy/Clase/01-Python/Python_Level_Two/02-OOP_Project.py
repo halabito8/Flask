@@ -21,8 +21,24 @@
 
 
 
-class Account:
-    pass
+class Account():
+    def __init__(self,owner,balance):
+        self.owner = owner
+        self.balance = balance
+
+    def __repr__(self):
+        return f"Owner: {self.owner} Balance: {self.balance}"
+
+    def deposit(self,money):
+        self.balance += money
+        return print(f"Your new balance is {self.balance}")
+
+    def withdraw(self,money):
+        if self.balance >= money:
+            self.balance -= money
+            return print(f"Your new balance is {self.balance}")
+        else:
+            return print(f"You cant withdraw {money} because your balance is {self.balance}")
 
 
 # 1. Instantiate the class
@@ -36,13 +52,13 @@ print(acct1)
 
 
 # 3. Show the account owner attribute
-acct1.owner
+print(acct1.owner)
 
 
 
 
 # 4. Show the account balance attribute
-acct1.balance
+print(acct1.balance)
 
 
 
