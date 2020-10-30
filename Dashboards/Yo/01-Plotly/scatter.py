@@ -7,7 +7,7 @@ np.random.seed(42)
 randx = np.random.randint(1,101,100)
 randy = np.random.randint(1,101,100)
 
-data = [go.Scatter(x=randx,
+scatter = go.Scatter(x=randx,
                    y=randy,
                    mode='markers',
                    marker=dict(
@@ -15,7 +15,9 @@ data = [go.Scatter(x=randx,
                        color='rgb(30,200,45)',
                        symbol='diamond',
                        line={'width':2}
-                   ))]
+                   ))
+
+data = [scatter]
 
 layout = go.Layout(title='A si bueno',
                    xaxis={'title': 'Esto es X'},
